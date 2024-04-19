@@ -49,4 +49,4 @@ jobs:
         run: cd /home/ubuntu/sites/development.akkharawit.com/_work/kradadtod-api/kradadtod-api
 
       - name: Deploy
-        run: pm2 restart kradadtod-api --watch || pm2 start --name kradadtod-api --watch -- java -jar kradadtod-backend.jar
+        run: pm2 restart kradadtod-api --watch
