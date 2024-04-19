@@ -1,7 +1,6 @@
 package th.ac.utcc.kradadtodapi.services;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import th.ac.utcc.kradadtodapi.dataTransfer.TransactionDTO;
 import th.ac.utcc.kradadtodapi.models.Transaction;
 import th.ac.utcc.kradadtodapi.repositories.TransactionRepository;
@@ -40,6 +39,7 @@ public class TransactionService {
                 transaction.getSenderNameTh(),
                 transaction.getAmount(),
                 transaction.getCurrency(),
+                transaction.getBankCode(),
                 transaction.getUploadDate(),
                 transaction.getUploadTime(),
                 transaction.getTransactionCategory().getCategory(),
