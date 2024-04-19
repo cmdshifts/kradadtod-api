@@ -3,7 +3,11 @@ package th.ac.utcc.kradadtodapi.services;
 import org.springframework.stereotype.Service;
 import th.ac.utcc.kradadtodapi.dataTransfer.TransactionDTO;
 import th.ac.utcc.kradadtodapi.models.Transaction;
+import th.ac.utcc.kradadtodapi.models.TransactionCategory;
+import th.ac.utcc.kradadtodapi.models.TransactionType;
+import th.ac.utcc.kradadtodapi.repositories.TransactionCategoryRepository;
 import th.ac.utcc.kradadtodapi.repositories.TransactionRepository;
+import th.ac.utcc.kradadtodapi.repositories.TransactionTypeRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,9 +15,14 @@ import java.util.stream.Collectors;
 @Service
 public class TransactionService {
     private final TransactionRepository transactionRepository;
+    private final TransactionCategoryRepository transactionCategoryRepository;
+    private final TransactionTypeRepository transactionTypeRepository;
 
-    public TransactionService(TransactionRepository transactionRepository) {
+    public TransactionService(TransactionRepository transactionRepository, TransactionCategoryRepository transactionCategoryRepository,
+                              TransactionTypeRepository transactionTypeRepository) {
         this.transactionRepository = transactionRepository;
+        this.transactionCategoryRepository = transactionCategoryRepository;
+        this.transactionTypeRepository = transactionTypeRepository;
     }
 
     public List<TransactionDTO> getAllTransactions() {
@@ -28,6 +37,14 @@ public class TransactionService {
         return transactions.stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
+    }
+
+    public List<TransactionCategory> getTransactionCategory() {
+        return transactionCategoryRepository.findAll();
+    }
+
+    public List<TransactionType> getTransactionType() {
+        return transactionTypeRepository.findAll();
     }
 
     private TransactionDTO mapToDTO(Transaction transaction) {

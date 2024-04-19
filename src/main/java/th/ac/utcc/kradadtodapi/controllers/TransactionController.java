@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import th.ac.utcc.kradadtodapi.dataTransfer.TransactionDTO;
+import th.ac.utcc.kradadtodapi.models.TransactionCategory;
+import th.ac.utcc.kradadtodapi.models.TransactionType;
 import th.ac.utcc.kradadtodapi.models.slip.TransactionResponse;
 import th.ac.utcc.kradadtodapi.services.SlipOKService;
 import th.ac.utcc.kradadtodapi.services.TransactionService;
@@ -35,5 +37,15 @@ public class TransactionController {
     @GetMapping("/getSlipData")
     public TransactionResponse getTransactionData(@RequestParam String value) {
         return slipOKService.fetchSlipOkData(value);
+    }
+
+    @GetMapping("/getCategory")
+    List<TransactionCategory> getAllCategory() {
+        return transactionService.getTransactionCategory();
+    }
+
+    @GetMapping("/getType")
+    List<TransactionType> getAllType() {
+        return transactionService.getTransactionType();
     }
 }
