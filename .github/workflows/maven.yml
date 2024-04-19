@@ -45,9 +45,6 @@ jobs:
         with:
           name: kradadtod-backend
 
-      - name: Fake deploy
-        run: ls kradadtod-backend-*.jar
-
       - name: Go to directory
         run: cd /home/ubuntu/sites/development.akkharawit.com/actions-runner/_work/kradadtod-api/kradadtod-api
 
