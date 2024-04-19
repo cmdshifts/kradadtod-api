@@ -10,12 +10,13 @@ public class TransactionDTO {
     private String senderNameTh;
     private BigDecimal amount;
     private String currency;
+    private Long bankCode;
     private String uploadDate;
     private String uploadTime;
     private String category;
     private String type;
 
-    public TransactionDTO(Long id, String receiverName, String receiverNameTh, String senderName, String senderNameTh, BigDecimal amount, String currency, String uploadDate, String uploadTime, String category, String type) {
+    public TransactionDTO(Long id, String receiverName, String receiverNameTh, String senderName, String senderNameTh, BigDecimal amount, String currency, Long bankCode, String uploadDate, String uploadTime, String category, String type) {
         this.id = id;
         this.receiverName = receiverName;
         this.receiverNameTh = receiverNameTh;
@@ -23,6 +24,7 @@ public class TransactionDTO {
         this.senderNameTh = senderNameTh;
         this.amount = amount;
         this.currency = currency;
+        this.bankCode = bankCode;
         this.uploadDate = uploadDate;
         this.uploadTime = uploadTime;
         this.category = category;
@@ -83,6 +85,14 @@ public class TransactionDTO {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public Long getBankCode() {
+        return bankCode;
+    }
+
+    public void setBankCode(Long bankCode) {
+        this.bankCode = bankCode;
     }
 
     public String getUploadDate() {

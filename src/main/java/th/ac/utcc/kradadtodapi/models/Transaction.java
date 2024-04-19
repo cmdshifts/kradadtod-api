@@ -31,6 +31,8 @@ public class Transaction {
     private BigDecimal amount;
     @Column(name = "currency", table = "transaction")
     private String currency;
+    @Column(name = "bank_code", table = "transaction")
+    private Long bankCode;
     @Column(name = "upload_date", table = "transaction")
     private String uploadDate;
     @Column(name = "upload_time", table = "transaction")
@@ -108,6 +110,14 @@ public class Transaction {
 
     public void setCurrency(String currency) {
         this.currency = currency;
+    }
+
+    public Long getBankCode() {
+        return bankCode;
+    }
+
+    public void setBankCode(Long bankCode) {
+        this.bankCode = bankCode;
     }
 
     public String getUploadDate() {
