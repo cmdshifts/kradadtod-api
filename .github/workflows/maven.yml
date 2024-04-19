@@ -46,7 +46,7 @@ jobs:
           name: kradadtod-backend
 
       - name: Go to directory
-        run: cd /home/ubuntu/sites/development.akkharawit.com/actions-runner/_work/kradadtod-api/kradadtod-api
+        run: cd /home/ubuntu/sites/development.akkharawit.com/_work/kradadtod-api/kradadtod-api
 
       - name: Deploy
         run: pm2 restart kradadtod-api --watch || pm2 start java -jar kradadtod-backend.jar --name kradadtod-api --watch
