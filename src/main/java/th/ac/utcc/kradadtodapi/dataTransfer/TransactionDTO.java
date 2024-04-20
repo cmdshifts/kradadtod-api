@@ -5,26 +5,28 @@ import java.math.BigDecimal;
 public class TransactionDTO {
     private Long id;
     private String receiverName;
-    private String receiverNameTh;
+    private String receiverAccountId;
+    private Long receiverBankCode;
     private String senderName;
-    private String senderNameTh;
+    private String senderAccountId;
+    private Long senderBankCode;
     private BigDecimal amount;
     private String currency;
-    private Long bankCode;
     private String uploadDate;
     private String uploadTime;
     private String category;
     private String type;
 
-    public TransactionDTO(Long id, String receiverName, String receiverNameTh, String senderName, String senderNameTh, BigDecimal amount, String currency, Long bankCode, String uploadDate, String uploadTime, String category, String type) {
+    public TransactionDTO(Long id, String receiverName, String receiverAccountId, Long receiverBankCode, String senderName, String senderAccountId, Long senderBankCode, BigDecimal amount, String currency, String uploadDate, String uploadTime, String category, String type) {
         this.id = id;
         this.receiverName = receiverName;
-        this.receiverNameTh = receiverNameTh;
+        this.receiverAccountId = receiverAccountId;
+        this.receiverBankCode = receiverBankCode;
         this.senderName = senderName;
-        this.senderNameTh = senderNameTh;
+        this.senderAccountId = senderAccountId;
+        this.senderBankCode = senderBankCode;
         this.amount = amount;
         this.currency = currency;
-        this.bankCode = bankCode;
         this.uploadDate = uploadDate;
         this.uploadTime = uploadTime;
         this.category = category;
@@ -47,12 +49,20 @@ public class TransactionDTO {
         this.receiverName = receiverName;
     }
 
-    public String getReceiverNameTh() {
-        return receiverNameTh;
+    public String getReceiverAccountId() {
+        return receiverAccountId;
     }
 
-    public void setReceiverNameTh(String receiverNameTh) {
-        this.receiverNameTh = receiverNameTh;
+    public void setReceiverAccountId(String receiverAccountId) {
+        this.receiverAccountId = receiverAccountId;
+    }
+
+    public Long getReceiverBankCode() {
+        return receiverBankCode;
+    }
+
+    public void setReceiverBankCode(Long receiverBankCode) {
+        this.receiverBankCode = receiverBankCode;
     }
 
     public String getSenderName() {
@@ -63,12 +73,20 @@ public class TransactionDTO {
         this.senderName = senderName;
     }
 
-    public String getSenderNameTh() {
-        return senderNameTh;
+    public String getSenderAccountId() {
+        return senderAccountId;
     }
 
-    public void setSenderNameTh(String senderNameTh) {
-        this.senderNameTh = senderNameTh;
+    public void setSenderAccountId(String senderAccountId) {
+        this.senderAccountId = senderAccountId;
+    }
+
+    public Long getSenderBankCode() {
+        return senderBankCode;
+    }
+
+    public void setSenderBankCode(Long senderBankCode) {
+        this.senderBankCode = senderBankCode;
     }
 
     public BigDecimal getAmount() {
@@ -85,14 +103,6 @@ public class TransactionDTO {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    public Long getBankCode() {
-        return bankCode;
-    }
-
-    public void setBankCode(Long bankCode) {
-        this.bankCode = bankCode;
     }
 
     public String getUploadDate() {

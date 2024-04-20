@@ -21,18 +21,20 @@ public class Transaction {
     private Member member;
     @Column(name = "receiver_name", table = "transaction")
     private String receiverName;
-    @Column(name = "receiver_name_th", table = "transaction")
-    private String receiverNameTh;
+    @Column(name = "receiver_account_id", table = "transaction")
+    private String receiverAccountId;
+    @Column(name = "receiver_bank_code", table = "transaction")
+    private Long receiverBankCode;
     @Column(name = "sender_name", table = "transaction")
     private String senderName;
-    @Column(name = "sender_name_th", table = "transaction")
-    private String senderNameTh;
+    @Column(name = "sender_account_id", table = "transaction")
+    private String senderAccountId;
+    @Column(name = "sender_bank_code", table = "transaction")
+    private Long senderBankCode;
     @Column(name = "amount", table = "transaction")
     private BigDecimal amount;
     @Column(name = "currency", table = "transaction")
     private String currency;
-    @Column(name = "bank_code", table = "transaction")
-    private Long bankCode;
     @Column(name = "upload_date", table = "transaction")
     private String uploadDate;
     @Column(name = "upload_time", table = "transaction")
@@ -72,12 +74,20 @@ public class Transaction {
         this.receiverName = receiverName;
     }
 
-    public String getReceiverNameTh() {
-        return receiverNameTh;
+    public String getReceiverAccountId() {
+        return receiverAccountId;
     }
 
-    public void setReceiverNameTh(String receiverNameTh) {
-        this.receiverNameTh = receiverNameTh;
+    public void setReceiverAccountId(String receiverAccountId) {
+        this.receiverAccountId = receiverAccountId;
+    }
+
+    public Long getReceiverBankCode() {
+        return receiverBankCode;
+    }
+
+    public void setReceiverBankCode(Long receiverBankCode) {
+        this.receiverBankCode = receiverBankCode;
     }
 
     public String getSenderName() {
@@ -88,12 +98,20 @@ public class Transaction {
         this.senderName = senderName;
     }
 
-    public String getSenderNameTh() {
-        return senderNameTh;
+    public String getSenderAccountId() {
+        return senderAccountId;
     }
 
-    public void setSenderNameTh(String senderNameTh) {
-        this.senderNameTh = senderNameTh;
+    public void setSenderAccountId(String senderAccountId) {
+        this.senderAccountId = senderAccountId;
+    }
+
+    public Long getSenderBankCode() {
+        return senderBankCode;
+    }
+
+    public void setSenderBankCode(Long senderBankCode) {
+        this.senderBankCode = senderBankCode;
     }
 
     public BigDecimal getAmount() {
@@ -110,14 +128,6 @@ public class Transaction {
 
     public void setCurrency(String currency) {
         this.currency = currency;
-    }
-
-    public Long getBankCode() {
-        return bankCode;
-    }
-
-    public void setBankCode(Long bankCode) {
-        this.bankCode = bankCode;
     }
 
     public String getUploadDate() {
