@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.math.BigDecimal;
+
 @Entity
 @Table(name = "achievement")
 public class Achievement {
@@ -18,7 +20,7 @@ public class Achievement {
     @JsonIgnore
     private Member member;
     @Column(name = "achievement_amount", table = "achievement")
-    private Long amount;
+    private BigDecimal amount;
     @Column(name = "achievement_time", table = "achievement")
     private String time;
 
@@ -38,11 +40,11 @@ public class Achievement {
         this.member = member;
     }
 
-    public Long getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
