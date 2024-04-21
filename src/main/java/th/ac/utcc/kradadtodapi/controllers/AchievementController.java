@@ -1,8 +1,5 @@
 package th.ac.utcc.kradadtodapi.controllers;
 
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,10 +23,8 @@ public class AchievementController {
         return achievementRepository.findAll();
     }
 
-    @GetMapping("/all")
-    public ResponseEntity<List<Achievement>> getAllTransactions(@RequestParam Long id) {
-        List<Achievement> achievements = achievementRepository.findByMemberId(id);
-        return new ResponseEntity<>(achievements, HttpStatus.OK);
+    @GetMapping("/getById")
+    List<Achievement> getAllTransactions(@RequestParam Long id) {
+        return achievementRepository.findByMemberId(id);
     }
-
 }
