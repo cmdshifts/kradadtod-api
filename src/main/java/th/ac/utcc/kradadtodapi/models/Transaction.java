@@ -9,6 +9,9 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "transaction")
+@SecondaryTable(name = "member", pkJoinColumns = @PrimaryKeyJoinColumn(name = "member_id"))
+@SecondaryTable(name = "transaction_category", pkJoinColumns = @PrimaryKeyJoinColumn(name = "transaction_category_id"))
+@SecondaryTable(name = "transaction_type", pkJoinColumns = @PrimaryKeyJoinColumn(name = "transaction_type_id"))
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,6 +52,26 @@ public class Transaction {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private TransactionType transactionType;
+
+    public Transaction(Member member, String receiverName, String receiverAccountId, Long receiverBankCode, String senderName, String senderAccountId, Long senderBankCode, BigDecimal amount, String currency, String uploadDate, String uploadTime, TransactionCategory transactionCategory, TransactionType transactionType) {
+        this.member = member;
+        this.receiverName = receiverName;
+        this.receiverAccountId = receiverAccountId;
+        this.receiverBankCode = receiverBankCode;
+        this.senderName = senderName;
+        this.senderAccountId = senderAccountId;
+        this.senderBankCode = senderBankCode;
+        this.amount = amount;
+        this.currency = currency;
+        this.uploadDate = uploadDate;
+        this.uploadTime = uploadTime;
+        this.transactionCategory = transactionCategory;
+        this.transactionType = transactionType;
+    }
+
+    public Transaction() {
+
+    }
 
     public Long getId() {
         return id;
