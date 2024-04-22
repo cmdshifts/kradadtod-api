@@ -9,6 +9,7 @@ import th.ac.utcc.kradadtodapi.repositories.TransactionCategoryRepository;
 import th.ac.utcc.kradadtodapi.repositories.TransactionRepository;
 import th.ac.utcc.kradadtodapi.repositories.TransactionTypeRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,14 @@ public class TransactionService {
     }
 
     public List<TransactionDTO> getTransactionByMemberId(Long id) {
-        List<Transaction> transactions = transactionRepository.findByMemberId(id);
+        List<Transaction> transactions = transactionRepository.findAllByMemberIdOrderByUploadDateDesc(id);
+        return transactions.stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<TransactionDTO> getTransactionByMemberIdAndDate(Long id, LocalDate date) {
+        List<Transaction> transactions = transactionRepository.findAllByMemberIdAndUploadDateGreaterThanEqualOrderByUploadDateDesc(id, date);
         return transactions.stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());

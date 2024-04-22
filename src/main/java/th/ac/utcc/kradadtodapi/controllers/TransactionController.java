@@ -16,6 +16,7 @@ import th.ac.utcc.kradadtodapi.repositories.TransactionTypeRepository;
 import th.ac.utcc.kradadtodapi.services.SlipOKService;
 import th.ac.utcc.kradadtodapi.services.TransactionService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -45,6 +46,11 @@ public class TransactionController {
     @GetMapping("/getAllByMemberId")
     List<TransactionDTO> getAllTransactionByMemberId(@RequestParam Long id) {
         return transactionService.getTransactionByMemberId(id);
+    }
+
+    @GetMapping("/getTransactionByMemberIdAndDateAfter")
+    List<TransactionDTO> getTransactionByMemberIdAndDateAfter(@RequestParam Long id, @RequestParam LocalDate date) {
+        return transactionService.getTransactionByMemberIdAndDate(id, date);
     }
 
     @GetMapping("/getSlipData")
