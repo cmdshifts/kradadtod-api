@@ -6,6 +6,8 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "transaction")
@@ -39,9 +41,9 @@ public class Transaction {
     @Column(name = "currency", table = "transaction")
     private String currency;
     @Column(name = "upload_date", table = "transaction")
-    private String uploadDate;
+    private LocalDate uploadDate;
     @Column(name = "upload_time", table = "transaction")
-    private String uploadTime;
+    private LocalTime uploadTime;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "transaction_category_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -53,7 +55,7 @@ public class Transaction {
     @JsonIgnore
     private TransactionType transactionType;
 
-    public Transaction(Member member, String receiverName, String receiverAccountId, Long receiverBankCode, String senderName, String senderAccountId, Long senderBankCode, BigDecimal amount, String currency, String uploadDate, String uploadTime, TransactionCategory transactionCategory, TransactionType transactionType) {
+    public Transaction(Member member, String receiverName, String receiverAccountId, Long receiverBankCode, String senderName, String senderAccountId, Long senderBankCode, BigDecimal amount, String currency, LocalDate uploadDate, LocalTime uploadTime, TransactionCategory transactionCategory, TransactionType transactionType) {
         this.member = member;
         this.receiverName = receiverName;
         this.receiverAccountId = receiverAccountId;
@@ -153,19 +155,19 @@ public class Transaction {
         this.currency = currency;
     }
 
-    public String getUploadDate() {
+    public LocalDate getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(String uploadDate) {
+    public void setUploadDate(LocalDate uploadDate) {
         this.uploadDate = uploadDate;
     }
 
-    public String getUploadTime() {
+    public LocalTime getUploadTime() {
         return uploadTime;
     }
 
-    public void setUploadTime(String uploadTime) {
+    public void setUploadTime(LocalTime uploadTime) {
         this.uploadTime = uploadTime;
     }
 

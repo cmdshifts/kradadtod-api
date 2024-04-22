@@ -1,6 +1,8 @@
 package th.ac.utcc.kradadtodapi.dataTransfer;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class TransactionDTO {
     private Long id;
@@ -12,12 +14,12 @@ public class TransactionDTO {
     private Long senderBankCode;
     private BigDecimal amount;
     private String currency;
-    private String uploadDate;
-    private String uploadTime;
+    private LocalDate uploadDate;
+    private LocalTime uploadTime;
     private String category;
     private String type;
 
-    public TransactionDTO(Long id, String receiverName, String receiverAccountId, Long receiverBankCode, String senderName, String senderAccountId, Long senderBankCode, BigDecimal amount, String currency, String uploadDate, String uploadTime, String category, String type) {
+    public TransactionDTO(Long id, String receiverName, String receiverAccountId, Long receiverBankCode, String senderName, String senderAccountId, Long senderBankCode, BigDecimal amount, String currency, LocalDate uploadDate, LocalTime uploadTime, String category, String type) {
         this.id = id;
         this.receiverName = receiverName;
         this.receiverAccountId = receiverAccountId;
@@ -105,19 +107,19 @@ public class TransactionDTO {
         this.currency = currency;
     }
 
-    public String getUploadDate() {
+    public LocalDate getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(String uploadDate) {
+    public void setUploadDate(LocalDate uploadDate) {
         this.uploadDate = uploadDate;
     }
 
-    public String getUploadTime() {
+    public LocalTime getUploadTime() {
         return uploadTime;
     }
 
-    public void setUploadTime(String uploadTime) {
+    public void setUploadTime(LocalTime uploadTime) {
         this.uploadTime = uploadTime;
     }
 
