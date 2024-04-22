@@ -1,5 +1,6 @@
 package th.ac.utcc.kradadtodapi.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import th.ac.utcc.kradadtodapi.dataTransfer.StatisticDTO;
@@ -120,6 +121,6 @@ public class TransactionController {
         statisticDTO.setTotalOutcome(totalOutcome);
         statisticDTO.setCurrentTotal(totalIncome.subtract(totalOutcome));
 
-        return ResponseEntity.ok(statisticDTO);
+        return new ResponseEntity<>(statisticDTO, HttpStatus.OK);
     }
 }
