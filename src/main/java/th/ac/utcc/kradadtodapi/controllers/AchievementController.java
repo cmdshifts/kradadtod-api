@@ -44,6 +44,6 @@ public class AchievementController {
         achievement.setTime(achievementPutDTO.getDate());
 
         Achievement savedAchievement = achievementRepository.save(achievement);
-        return new ResponseEntity<>(savedAchievement, HttpStatus.CREATED);
+        return new ResponseEntity<>(savedAchievement, HttpStatus.OK);
     }
 }
