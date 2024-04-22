@@ -2,6 +2,7 @@ package th.ac.utcc.kradadtodapi.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import th.ac.utcc.kradadtodapi.dataTransfer.StatisticDTO;
 import th.ac.utcc.kradadtodapi.dataTransfer.TransactionDTO;
 import th.ac.utcc.kradadtodapi.dataTransfer.TransactionPostDTO;
 import th.ac.utcc.kradadtodapi.models.Member;
@@ -16,6 +17,7 @@ import th.ac.utcc.kradadtodapi.repositories.TransactionTypeRepository;
 import th.ac.utcc.kradadtodapi.services.SlipOKService;
 import th.ac.utcc.kradadtodapi.services.TransactionService;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -97,5 +99,27 @@ public class TransactionController {
         Transaction savedTransaction = transactionRepository.save(t);
 
         return ResponseEntity.ok(savedTransaction);
+    }
+
+    @GetMapping("/getStatistics")
+    public ResponseEntity<StatisticDTO> getStatistics(@RequestParam Long id, @RequestParam LocalDate date) {
+        List<Transaction> incomeTransactions = transactionRepository.findAllByMemberIdAndTransactionTypeIdAndUploadDateGreaterThanEqual(id, 1L, date);
+        List<Transaction> outcomeTransactions = transactionRepository.findAllByMemberIdAndTransactionTypeIdAndUploadDateGreaterThanEqual(id, 2L, date);
+
+        BigDecimal totalIncome = incomeTransactions.stream()
+                .map(Transaction::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        BigDecimal totalOutcome = outcomeTransactions.stream()
+                .map(Transaction::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        StatisticDTO statisticDTO = new StatisticDTO();
+
+        statisticDTO.setTotalIncome(totalIncome);
+        statisticDTO.setTotalOutcome(totalOutcome);
+        statisticDTO.setCurrentTotal(totalIncome.subtract(totalOutcome));
+
+        return ResponseEntity.ok(statisticDTO);
     }
 }

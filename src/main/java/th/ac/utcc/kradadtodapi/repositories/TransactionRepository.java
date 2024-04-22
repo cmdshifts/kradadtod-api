@@ -11,4 +11,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findByMemberId(Long id);
     List<Transaction> findAllByMemberIdOrderByUploadDateDesc(Long id);
     List<Transaction> findAllByMemberIdAndUploadDateGreaterThanEqualOrderByUploadDateDesc(Long id, LocalDate date);
+    List<Transaction> findAllByMemberIdAndTransactionTypeIdAndUploadDateGreaterThanEqual(Long memberId, Long type, LocalDate date);
 }
