@@ -99,7 +99,7 @@ public class TransactionController {
 
         Transaction savedTransaction = transactionRepository.save(t);
 
-        return ResponseEntity.ok(savedTransaction);
+        return new ResponseEntity<>(savedTransaction, HttpStatus.OK);
     }
 
     @GetMapping("/getStatistics")
