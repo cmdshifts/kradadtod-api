@@ -2,10 +2,7 @@ package th.ac.utcc.kradadtodapi.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import th.ac.utcc.kradadtodapi.dataTransfer.UserData;
 import th.ac.utcc.kradadtodapi.models.Member;
 import th.ac.utcc.kradadtodapi.repositories.MemberRepository;
@@ -48,5 +45,34 @@ public class MemberController {
         } else {
             return new ResponseEntity<>(userData, HttpStatus.NO_CONTENT);
         }
+    }
+
+    @PutMapping("/user")
+    public ResponseEntity<Member> updateUserData(@RequestBody UserData data) throws Exception {
+        Member memberData = memberRepository.findByUsername(data.getUsername())
+                .orElseThrow(() -> new Exception("Member not found with id: " + data.getUsername()));
+
+        if (data.getDisplayName() != null) {
+            memberData.setDisplayName(data.getDisplayName());
+        }
+
+        if (data.getEmail() != null) {
+            memberData.setEmail(data.getEmail());
+        }
+
+        return new ResponseEntity<>(memberRepository.save(memberData), HttpStatus.OK);
+    }
+
+    @PostMapping("/user")
+    public ResponseEntity<Member> postUserData(@RequestBody Member member) {
+        Member memberData = new Member();
+
+        memberData.setUsername(member.getUsername());
+        memberData.setEmail(member.getEmail());
+        memberData.setDisplayName(member.getDisplayName());
+        memberData.setProfileUrl(member.getProfileUrl());
+        memberData.setPassword(member.getPassword());
+
+        return new ResponseEntity<>(memberRepository.save(memberData), HttpStatus.OK);
     }
 }
